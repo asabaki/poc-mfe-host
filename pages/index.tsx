@@ -2,10 +2,19 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
+// const ReactRemoteComponent = dynamic(() => import('remote/Nav'), {
+//   ssr: false,
+// });
+
+// const Button = dynamic(() => import('remote2/Button'), { ssr: false })
+const RemoteApp = dynamic(() => import('remote2/RemoteApp'), { ssr: false })
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -20,6 +29,9 @@ export default function Home() {
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
           </p>
+          {/* <Button /> */}
+          <button onClick={() => { router.push('application')}}>Go to Application</button>
+          {/* <ReactRemoteComponent /> */}
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
